@@ -1,34 +1,20 @@
 require('bootstrap/dist/css/bootstrap.css');
 require('./index.css');
-//import React from 'react';
-//import ReactDOM from 'react-dom';
-// import Counter from './components/Counter';
-const createStore = require('redux').createStore;
-const combineReducers = require('redux').combineReducers;
-// REDUCERS
+const { createStore } = require('redux');
+const { combineReducers } = require('redux');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const { Provider } = require('react-redux');
 const screens = require('./reducers/screens');
 const flagExample = require('./reducers/flagExample');
+const AppContainer = require('./containers/AppContainer.js');
 const app = combineReducers({
   screens,
   flagExample
 });
-// STORE
-const store = createStore(app);
-window.console.log(store.getState());
-// RENDER
-/*
-const render = () => {
-  ReactDOM.render(
-    <Counter
-      value={store.getState()}
-      onIncrement = {() => store.dispatch({
-        type: 'INCREMENT'
-      })}
-      />,
-    document.getElementById('root')
-  );
-  window.console.log(store.getState());
-};
-store.subscribe(render);
-render();
-*/
+ReactDOM.render(
+  <Provider store={createStore(app)}>
+    <AppContainer />
+  </Provider>,
+  document.getElementById('root')
+);
