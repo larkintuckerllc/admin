@@ -1,7 +1,8 @@
 require('bootstrap/dist/css/bootstrap.css');
 require('./index.css');
-const { createStore } = require('redux');
-const { combineReducers } = require('redux');
+const Redux = require('redux');
+const { createStore } = Redux;
+const { combineReducers } = Redux;
 const React = require('react');
 const ReactDOM = require('react-dom');
 const { Provider } = require('react-redux');

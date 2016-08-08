@@ -1,11 +1,12 @@
 const React = require('react');
-const { PropTypes } = require('react');
-const Screens = ({screens}) => {
-  window.console.log(screens);
-  return(
-    <p>Screens</p>
-  );
-};
+const { PropTypes } = React;
+const Screens = ({ screens }) => (
+  <ul>
+    {screens.map(screen =>
+      <li key={screen.id}>{screen.id} {screen.description}</li>
+    )}
+  </ul>
+);
 Screens.propTypes = {
   screens: PropTypes.array.isRequired
 };
