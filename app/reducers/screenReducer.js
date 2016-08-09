@@ -1,5 +1,6 @@
 const { ADD_SCREEN } = require('../actions');
-const screen = (state, action) => {
+const screenReducer = {};
+screenReducer.screen = (state, action) => {
   switch (action.type) {
     case ADD_SCREEN:
       return {
@@ -10,4 +11,4 @@ const screen = (state, action) => {
       return state;
   }
 }
-module.exports = screen;
+module.exports = screenReducer;

@@ -1,6 +1,6 @@
 const expect = require('expect');
 const deepFreeze = require('deep-freeze');
-const screens = require('../app/reducers/screens');
+const { screens } = require('../app/reducers/screensReducer');
 const testAddScreen = () => {
   const stateBefore = [];
   const action = {

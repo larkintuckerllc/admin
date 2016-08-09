@@ -1,10 +1,9 @@
 const { connect } = require('react-redux');
 const Screens = require('../components/Screens');
-const mapStateToProps = (state) => {
-  return {
-    screens: state.screens
-  };
-}
+const { getAllScreens} = require('../reducers/');
+const mapStateToProps = (state) => ({
+  screens: getAllScreens(state)
+});
 const ScreensContainer = connect(
   mapStateToProps,
   null

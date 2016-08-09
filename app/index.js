@@ -1,18 +1,12 @@
 require('bootstrap/dist/css/bootstrap.css');
 require('./index.css');
-const Redux = require('redux');
-const { createStore, combineReducers } = Redux;
 const React = require('react');
 const ReactDOM = require('react-dom');
-const { Provider } = require('react-redux');
-const screens = require('./reducers/screens');
-const AppContainer = require('./containers/AppContainer.js');
-const app = combineReducers({
-  screens
-});
+const configureStore = require('./configureStore');
+const RootContainer = require('./containers/RootContainer');
+const store = configureStore();
 ReactDOM.render(
-  <Provider store={createStore(app)}>
-    <AppContainer />
-  </Provider>,
+  <RootContainer
+    store={store}/>,
   document.getElementById('root')
 );
