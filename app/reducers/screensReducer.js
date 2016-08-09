@@ -6,6 +6,7 @@ const byId = (state = {}, action) => {
   switch(action.type) {
     case ADD_SCREEN:
       return Object.assign(
+        {},
         state,
         { [action.id]: screen(state[action.id], action) }
       );

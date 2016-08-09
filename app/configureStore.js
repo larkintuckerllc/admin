@@ -1,28 +1,19 @@
-const { createStore } = require('redux');
+const { createStore, applyMiddleware } = require('redux');
 const throttle = require('lodash/throttle');
+const createLogger = require('redux-logger');
 const { loadState, saveState } = require('./localStorage');
 const { app } = require('./reducers/');
-const addLoggingToDispatch = (store) => {
-  const rawDispatch = store.dispatch;
-  if (!window.console.group) {
-    return rawDispatch;
-  }
-  return (action) => {
-    window.console.group(action.type);
-    window.console.log('%c prev state', 'color: gray', store.getState());
-    window.console.log('%c action', 'color: blue', action);
-    const returnValue = rawDispatch(action);
-    window.console.log('%c next state', 'color: green', store.getState());
-    window.console.groupEnd(action.type);
-    return returnValue;
-  }
-};
 const configureStore = () => {
   const persistedState = loadState();
-  const store = createStore(app, persistedState);
+  const middlewares = [];
   if (process.env.NODE_ENV !== 'production') {
-    store.dispatch = addLoggingToDispatch(store);
+    middlewares.push(createLogger());
   }
+  const store = createStore(
+    app,
+    persistedState,
+    applyMiddleware(...middlewares)
+  );
   store.subscribe(throttle(() => {
     saveState({
       screens: store.getState().screens

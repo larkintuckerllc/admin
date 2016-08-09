@@ -2,7 +2,10 @@ const expect = require('expect');
 const deepFreeze = require('deep-freeze');
 const { screens } = require('../app/reducers/screensReducer');
 const testAddScreen = () => {
-  const stateBefore = {};
+  const stateBefore = {
+    byId: {},
+    allIds: []
+  };
   const action = {
     type: 'ADD_SCREEN',
     id: 'gcat',
