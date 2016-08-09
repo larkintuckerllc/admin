@@ -7,10 +7,6 @@ const screens = (state = [], action) => {
         ...state,
         screen(undefined, action)
       ];
-    case 'UPDATE_DESCRIPTION':
-      return state.map(o => {
-        screen(o, action)
-      })
     default:
       return state;
   }

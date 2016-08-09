@@ -1,5 +1,5 @@
-const Screens = require('../components/Screens');
 const { connect } = require('react-redux');
+const Screens = require('../components/Screens');
 const mapStateToProps = (state) => {
   return {
     screens: state.screens

@@ -1,12 +1,23 @@
 const React = require('react');
 const { PropTypes } = React;
-// TODO: USE BOOTSTRAP FORM ELEMENTS
 const AddScreen = ({ id, description, onAddScreen, onChangeId, onChangeDescription }) => (
-  <form onSubmit={onAddScreen}>
-    <input type="text" placeholder="id" value={id} onChange={onChangeId} />
-    <input type="text" placeholder="description" value={description} onChange={onChangeDescription} />
-    <button type="submi">add screen</button>
-  </form>
+  <div className="panel panel-default">
+    <div className="panel-body">
+      <form onSubmit={onAddScreen}>
+        <div className="form-group">
+          <label htmlFor="id">Id</label>
+          <input id="id" className="form-control" type="text" placeholder="id" value={id} onChange={onChangeId} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <input id="description" className="form-control" type="text" placeholder="description" value={description} onChange={onChangeDescription} />
+        </div>
+        <div className="form-group">
+          <button type="submit" className="btn btn-default">Add Screen</button>
+        </div>
+      </form>
+    </div>
+  </div>
 );
 AddScreen.propTypes = {
   id: PropTypes.string.isRequired,
