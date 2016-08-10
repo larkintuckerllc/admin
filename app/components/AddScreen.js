@@ -1,7 +1,7 @@
 const React = require('react');
 const { PropTypes } = React;
-const AddScreen = ({ id, description, onAddScreen, onChangeId, onChangeDescription, screens, isFetching }) => {
-  if (isFetching && screens.length === 0) {
+const AddScreen = ({ id, description, onAddScreen, onChangeId, onChangeDescription, screens, isFetching, isError }) => {
+  if ((isFetching && screens.length === 0) || isError) {
     return null;
   }
   return (
@@ -31,6 +31,7 @@ AddScreen.propTypes = {
   onChangeDescription: PropTypes.func.isRequired,
   onAddScreen: PropTypes.func.isRequired,
   screens: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired
 };
 module.exports = AddScreen;
