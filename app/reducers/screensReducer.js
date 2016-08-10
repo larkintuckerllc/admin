@@ -1,9 +1,19 @@
 const { combineReducers } = require('redux');
-const { ADD_SCREEN } = require('../actions');
+const { ADD_SCREEN, RECEIVE_SCREENS } = require('../actions');
 const { screen } = require('./screenReducer');
 const screensReducer = {};
 const byId = (state = {}, action) => {
   switch(action.type) {
+    case RECEIVE_SCREENS: {
+      const nextState = Object.assign(
+        {},
+        state
+      );
+      action.screens.forEach(screen => {
+        nextState[screen.id] = screen
+      });
+      return nextState;
+    }
     case ADD_SCREEN:
       return Object.assign(
         {},
@@ -16,6 +26,8 @@ const byId = (state = {}, action) => {
 }
 const allIds = (state = [], action) => {
   switch (action.type) {
+    case RECEIVE_SCREENS:
+      return action.screens.map(screen => screen.id);
     case ADD_SCREEN:
       return [...state, action.id];
     default:

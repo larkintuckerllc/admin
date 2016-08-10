@@ -1,24 +1,18 @@
-const { createStore, applyMiddleware } = require('redux');
-const throttle = require('lodash/throttle');
+const { createStore, applyMiddleware, compose } = require('redux');
 const createLogger = require('redux-logger');
-const { loadState, saveState } = require('./localStorage');
+const promise = require('redux-promise');
 const { app } = require('./reducers/');
 const configureStore = () => {
-  const persistedState = loadState();
-  const middlewares = [];
+  const middlewares = [promise];
   if (process.env.NODE_ENV !== 'production') {
     middlewares.push(createLogger());
   }
-  const store = createStore(
+  return createStore(
     app,
-    persistedState,
-    applyMiddleware(...middlewares)
+    compose(
+      applyMiddleware(...middlewares),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
   );
-  store.subscribe(throttle(() => {
-    saveState({
-      screens: store.getState().screens
-    });
-  }, 1000));
-  return store;
 }
 module.exports = configureStore;

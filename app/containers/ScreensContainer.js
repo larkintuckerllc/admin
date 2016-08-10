@@ -1,11 +1,12 @@
 const { connect } = require('react-redux');
-const Screens = require('../components/Screens');
 const { getAllScreens} = require('../reducers/');
+const ScreensDataContainer = require('./ScreensDataContainer');
+const { fetchScreens } = require('../actions');
 const mapStateToProps = (state) => ({
   screens: getAllScreens(state)
 });
 const ScreensContainer = connect(
   mapStateToProps,
-  null
-)(Screens);
+  { fetchScreens }
+)(ScreensDataContainer);
 module.exports = ScreensContainer;
