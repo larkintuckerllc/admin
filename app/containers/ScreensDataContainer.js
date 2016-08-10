@@ -11,10 +11,12 @@ const ScreensDataContainer = React.createClass({
   },
   fetchData() {
     const self = this;
-    const { fetchScreens } = self.props;
+    const { requestScreens, fetchScreens } = self.props;
+    requestScreens();
     fetchScreens();
   },
   propTypes: {
+    requestScreens: PropTypes.func.isRequired,
     fetchScreens: PropTypes.func.isRequired
   }
 });

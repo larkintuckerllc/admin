@@ -1,6 +1,12 @@
 const React = require('react');
 const { PropTypes } = React;
-const Screens = ({ screens }) => (
+const Screens = ({ screens, isFetching }) => {
+  if (isFetching && screens.length === 0) {
+    return (
+      <div className="alert alert-info" role="alert"><strong>Loading Screens...</strong></div>
+    );
+  }
+  return (
   <div className="panel panel-default">
     <div className="panel-heading">
       <strong>Screens</strong>
@@ -14,8 +20,10 @@ const Screens = ({ screens }) => (
       )}
     </ul>
   </div>
-);
+  );
+};
 Screens.propTypes = {
-  screens: PropTypes.array.isRequired
+  screens: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired
 };
 module.exports = Screens;

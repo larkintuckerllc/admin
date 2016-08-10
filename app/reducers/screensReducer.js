@@ -1,5 +1,5 @@
 const { combineReducers } = require('redux');
-const { ADD_SCREEN, RECEIVE_SCREENS } = require('../actions');
+const { ADD_SCREEN, REQUEST_SCREENS, RECEIVE_SCREENS } = require('../actions');
 const { screen } = require('./screenReducer');
 const screensReducer = {};
 const byId = (state = {}, action) => {
@@ -34,10 +34,23 @@ const allIds = (state = [], action) => {
       return state;
   }
 };
+const isFetching = (state = false, action) => {
+  switch (action.type) {
+    case REQUEST_SCREENS:
+      return true;
+    case RECEIVE_SCREENS:
+      return false;
+    default:
+      return state;
+  }
+}
 screensReducer.screens = combineReducers({
   byId,
-  allIds
+  allIds,
+  isFetching
 });
 screensReducer.getAllScreens = (state) =>
   state.allIds.map(id => state.byId[id]);
+screensReducer.getIsFetchingScreens = (state) =>
+  state.isFetching;
 module.exports = screensReducer;

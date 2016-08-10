@@ -30,6 +30,7 @@ const AddScreenLocalContainer = React.createClass({
     const self = this;
     return(
       <AddScreen
+        {...self.props}
         id={self.state.id}
         description={self.state.description}
         onChangeId={self.handleChangeId}
