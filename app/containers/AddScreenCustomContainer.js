@@ -1,8 +1,7 @@
-// COMPONENT WITH LOCAL STATE TO MANAGE FORM
 const React = require('react');
 const { PropTypes } = React;
 const AddScreen = require('../components/AddScreen');
-const AddScreenLocalContainer = React.createClass({
+const AddScreenCustomContainer = React.createClass({
   handleChangeId: function(e) {
     const self = this;
     self.setState({ id: e.target.value });
@@ -14,17 +13,24 @@ const AddScreenLocalContainer = React.createClass({
   handleAddScreen: function(e) {
     e.preventDefault();
     const self = this;
-    self.props.handleAddScreen(self.state.id, self.state.description)
-    self.setState({
-      id: '',
-      description: ''
-    });
+    const { requestAddScreen, addScreen } = self.props;
+    requestAddScreen();
+    addScreen(self.state.id, self.state.description);
   },
   getInitialState: function() {
     return {
       id: '',
       description: ''
     };
+  },
+  componentWillReceiveProps: function(nextProps) {
+    const self = this;
+    if (nextProps.isSuccessAdding) {
+      self.setState({
+        id: '',
+        description: ''
+      });
+    }
   },
   render: function() {
     const self = this;
@@ -39,7 +45,7 @@ const AddScreenLocalContainer = React.createClass({
     );
   },
   propTypes: {
-    handleAddScreen: PropTypes.func.isRequired
+    addScreen: PropTypes.func.isRequired
   }
 });
-module.exports = AddScreenLocalContainer;
+module.exports = AddScreenCustomContainer;

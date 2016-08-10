@@ -1,5 +1,14 @@
 const { combineReducers } = require('redux');
-const { screens, getAllScreens, getIsFetchingScreens, getIsErrorScreens } = require('./screensReducer');
+const {
+  screens,
+  getAllScreens,
+  getIsFetchingScreens,
+  getIsErrorFetchingScreens,
+  getIsAddingScreen,
+  getIsErrorAddingScreen,
+  getIsSuccessAddingScreen,
+  getErrorAddingMessageScreen
+} = require('./screensReducer');
 const index = {};
 index.app = combineReducers({
   screens
@@ -10,7 +19,19 @@ index.getAllScreens = (state) => {
 index.getIsFetchingScreens = (state) => {
   return getIsFetchingScreens(state.screens);
 }
-index.getIsErrorScreens = (state) => {
-  return getIsErrorScreens(state.screens);
+index.getIsErrorFetchingScreens = (state) => {
+  return getIsErrorFetchingScreens(state.screens);
+}
+index.getIsAddingScreen = (state) => {
+  return getIsAddingScreen(state.screens);
+}
+index.getIsErrorAddingScreen = (state) => {
+  return getIsErrorAddingScreen(state.screens);
+}
+index.getIsSuccessAddingScreen = (state) => {
+  return getIsSuccessAddingScreen(state.screens);
+}
+index.getErrorAddingMessageScreen = (state) => {
+  return getErrorAddingMessageScreen(state.screens);
 }
 module.exports = index;

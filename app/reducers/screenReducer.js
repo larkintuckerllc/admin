@@ -1,12 +1,9 @@
-const { ADD_SCREEN } = require('../actions');
+const { RECEIVE_ADD_SCREEN_SUCCESS } = require('../actions');
 const screenReducer = {};
 screenReducer.screen = (state, action) => {
   switch (action.type) {
-    case ADD_SCREEN:
-      return {
-          id: action.id,
-          description: action.description
-      };
+    case RECEIVE_ADD_SCREEN_SUCCESS:
+      return action.screen;
     default:
       return state;
   }

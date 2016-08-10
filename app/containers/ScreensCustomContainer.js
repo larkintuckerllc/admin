@@ -1,7 +1,7 @@
 const React = require('react');
 const { PropTypes } = React;
 const Screens = require('../components/Screens');
-const ScreensDataContainer = React.createClass({
+const ScreensCustomContainer = React.createClass({
   componentDidMount: function() {
     const self = this;
     self.fetchData();
@@ -20,4 +20,4 @@ const ScreensDataContainer = React.createClass({
     fetchScreens: PropTypes.func.isRequired
   }
 });
-module.exports = ScreensDataContainer;
+module.exports = ScreensCustomContainer;
