@@ -1,3 +1,4 @@
+const find = require('lodash/find');
 const index = {}
 const fakeDatabase = {
   screens: [{
@@ -13,17 +14,18 @@ const delay = (ms) =>
 index.fetchScreens = () =>
   delay(2000).then(() => {
     /*
-    throw new Error(500); // SERVER ERROR
+    throw new Error('500'); // SERVER ERROR
     */
     return fakeDatabase.screens
   });
 index.addScreen = (id, description) =>
-  // TODO: VALIDATE ID EXISTS AND IS UNIQUE
   delay(2000).then(() => {
     /*
-    throw new Error(500); // SERVER ERROR
+    throw new Error('500'); // SERVER ERROR
     */
-    throw new Error('409'); // CONFLICTING ID
+    if (find(fakeDatabase.screens, { id }) !== undefined) {
+      throw new Error('409'); // CONFLICTING ID
+    }
     const screen = { id, description };
     fakeDatabase.screens.push(screen);
     return screen;

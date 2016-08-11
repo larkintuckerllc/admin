@@ -16,25 +16,27 @@ const AddScreen = ({
   if ((isFetching && screens.length === 0) || isErrorFetching) {
     return null;
   }
-  // TODO: HANDLE ERROR MESSAGE TYPE - 409
-  window.console.log(errorAddingMessage);
-
-  const errorAddingEl = isErrorAdding ?
-    <div className="alert alert-danger" role="alert"><strong>Failed to add screen.</strong></div> :
-    null;
   return (
     <div className="panel panel-default">
       <div className="panel-body">
         <form onSubmit={onAddScreen}>
-          <div className="form-group">
-            <label htmlFor="id">Id</label>
+          <div className={'form-group' +
+            ((isErrorAdding && errorAddingMessage === '409') ?
+              ' has-error' : '')}>
+            <label htmlFor="id" className="control-label">Id</label>
             <input disabled={isAdding} id="id" className="form-control" type="text" placeholder="id" value={id} onChange={onChangeId} />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description" className="control-label">Description</label>
             <input disabled={isAdding} id="description" className="form-control" type="text" placeholder="description" value={description} onChange={onChangeDescription} />
           </div>
-          {errorAddingEl}
+          {
+            isErrorAdding ?
+              errorAddingMessage === '409' ?
+                <div className="alert alert-danger" role="alert"><strong>Duplicate Id.</strong></div> :
+                <div className="alert alert-danger" role="alert"><strong>Failed to add screen.</strong></div> :
+              null
+          }
           <div className="form-group">
             <button disabled={isAdding | id === ''} type="submit" className="btn btn-default">Add Screen</button>
           </div>
