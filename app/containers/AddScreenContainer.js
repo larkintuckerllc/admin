@@ -1,5 +1,5 @@
 const { connect } = require('react-redux');
-const { requestAddScreen, addScreen } = require('../actions');
+const { addScreen } = require('../actions');
 const {
   getAllScreens,
   getIsFetchingScreens,
@@ -21,6 +21,6 @@ const mapStateToProps = (state) => ({
 });
 const AddScreenContainer = connect(
   mapStateToProps,
-  { requestAddScreen, addScreen }
+  { addScreen }
 )(AddScreenCustomContainer);
 module.exports = AddScreenContainer;

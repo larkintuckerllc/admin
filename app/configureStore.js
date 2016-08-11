@@ -1,9 +1,10 @@
 const { createStore, applyMiddleware, compose } = require('redux');
 const createLogger = require('redux-logger');
 const promise = require('redux-promise');
+const thunk = require('redux-thunk').default;
 const { app } = require('./reducers/');
 const configureStore = () => {
-  const middlewares = [promise];
+  const middlewares = [thunk, promise];
   if (process.env.NODE_ENV !== 'production') {
     middlewares.push(createLogger());
   }

@@ -11,12 +11,10 @@ const ScreensCustomContainer = React.createClass({
   },
   fetchData() {
     const self = this;
-    const { requestScreens, fetchScreens } = self.props;
-    requestScreens();
+    const { fetchScreens } = self.props;
     fetchScreens();
   },
   propTypes: {
-    requestScreens: PropTypes.func.isRequired,
     fetchScreens: PropTypes.func.isRequired
   }
 });

@@ -1,3 +1,5 @@
+// TODO: ADD AN UPDATE API AND IMPLEMENT IN SAMPLE
+// TODO: ADD A DELETE API AND IMPLEMENT IN SAMPLE
 const find = require('lodash/find');
 const index = {}
 const fakeDatabase = {

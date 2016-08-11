@@ -27,18 +27,22 @@ actions.RECEIVE_SCREENS_ERROR = RECEIVE_SCREENS_ERROR;
 actions.REQUEST_ADD_SCREEN = REQUEST_ADD_SCREEN;
 actions.RECEIVE_ADD_SCREEN_SUCCESS = RECEIVE_ADD_SCREEN_SUCCESS;
 actions.RECEIVE_ADD_SCREEN_ERROR = RECEIVE_ADD_SCREEN_ERROR;
-actions.requestScreens = () => ({
+const requestScreens = () => ({
   type: REQUEST_SCREENS
 });
-actions.requestAddScreen = () => ({
+const requestAddScreen = () => ({
   type: REQUEST_ADD_SCREEN
 });
-actions.fetchScreens = () =>
-  fetchScreens()
-    .then(screens => receiveScreensSuccess(screens))
-    .catch(() => receiveScreensError());
-actions.addScreen = (id, description) =>
-  addScreen(id, description)
-    .then(screen => receiveAddScreenSuccess(screen))
-    .catch((err) => receiveAddScreenError(err.message));
+actions.fetchScreens = () => (dispatch) => {
+  dispatch(requestScreens());
+  return (fetchScreens()
+    .then(screens => dispatch(receiveScreensSuccess(screens)))
+    .catch(() => dispatch(receiveScreensError())));
+}
+actions.addScreen = (id, description) => (dispatch) => {
+  dispatch(requestAddScreen());
+  return(addScreen(id, description)
+    .then(screen => dispatch(receiveAddScreenSuccess(screen)))
+    .catch((err) => dispatch(receiveAddScreenError(err.message))));
+  }
 module.exports = actions;

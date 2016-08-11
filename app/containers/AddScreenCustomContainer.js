@@ -13,8 +13,7 @@ const AddScreenCustomContainer = React.createClass({
   handleAddScreen: function(e) {
     e.preventDefault();
     const self = this;
-    const { requestAddScreen, addScreen } = self.props;
-    requestAddScreen();
+    const { addScreen } = self.props;
     addScreen(self.state.id, self.state.description);
   },
   getInitialState: function() {

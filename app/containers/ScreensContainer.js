@@ -5,7 +5,7 @@ const {
   getIsErrorFetchingScreens
 } = require('../reducers/');
 const ScreensCustomContainer = require('./ScreensCustomContainer');
-const { requestScreens, fetchScreens } = require('../actions');
+const { fetchScreens } = require('../actions');
 const mapStateToProps = (state) => ({
   screens: getAllScreens(state),
   isFetching: getIsFetchingScreens(state),
@@ -13,6 +13,6 @@ const mapStateToProps = (state) => ({
 });
 const ScreensContainer = connect(
   mapStateToProps,
-  { requestScreens, fetchScreens }
+  { fetchScreens }
 )(ScreensCustomContainer);
 module.exports = ScreensContainer;
