@@ -7,12 +7,18 @@ const {
   getIsAddingScreen,
   getIsErrorAddingScreen,
   getIsSuccessAddingScreen,
-  getErrorAddingMessageScreen
+  getErrorAddingMessageScreen,
+  getSelectedScreen,
+  getIsUpdatingScreen,
+  getIsErrorUpdatingScreen
 } = require('./screensReducer');
 const index = {};
+// REDUCERS
 index.app = combineReducers({
   screens
 });
+// END
+// ACCESSSORS
 index.getAllScreens = (state) => {
   return getAllScreens(state.screens);
 };
@@ -34,4 +40,14 @@ index.getIsSuccessAddingScreen = (state) => {
 index.getErrorAddingMessageScreen = (state) => {
   return getErrorAddingMessageScreen(state.screens);
 }
+index.getSelectedScreen = (state) => {
+  return getSelectedScreen(state.screens);
+}
+index.getIsUpdatingScreen = (state) => {
+  return getIsUpdatingScreen(state.screens);
+}
+index.getIsErrorUpdatingScreen = (state) => {
+  return getIsErrorUpdatingScreen(state.screens);
+}
+// END
 module.exports = index;

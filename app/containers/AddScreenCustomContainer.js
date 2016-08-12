@@ -4,27 +4,37 @@ const AddScreen = require('../components/AddScreen');
 const AddScreenCustomContainer = React.createClass({
   handleChangeId: function(e) {
     const self = this;
-    self.setState({ id: e.target.value });
+    self.setState({
+      id: e.target.value,
+      dirty: true
+    });
   },
   handleChangeDescription: function(e) {
     const self = this;
-    self.setState({ description: e.target.value });
+    self.setState({
+      description: e.target.value,
+      dirty: true
+    });
   },
   handleAddScreen: function(e) {
     e.preventDefault();
     const self = this;
     const { addScreen } = self.props;
+    self.setState({
+      dirty: false
+    });
     addScreen(self.state.id, self.state.description);
   },
   getInitialState: function() {
     return {
       id: '',
-      description: ''
+      description: '',
+      dirty: false
     };
   },
   componentWillReceiveProps: function(nextProps) {
     const self = this;
-    if (nextProps.isSuccessAdding) {
+    if (nextProps.isSuccessAdding && !self.state.dirty) {
       self.setState({
         id: '',
         description: ''

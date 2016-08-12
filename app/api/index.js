@@ -1,5 +1,3 @@
-// TODO: ADD AN UPDATE API AND IMPLEMENT IN SAMPLE
-// TODO: ADD A DELETE API AND IMPLEMENT IN SAMPLE
 const find = require('lodash/find');
 const index = {}
 const fakeDatabase = {
@@ -30,6 +28,15 @@ index.addScreen = (id, description) =>
     }
     const screen = { id, description };
     fakeDatabase.screens.push(screen);
+    return screen;
+  });
+index.updateScreen = (id, description) =>
+  delay(2000).then(() => {
+    /*
+    throw new Error('500'); // SERVER ERROR
+    */
+    const screen = find(fakeDatabase.screens, { id });
+    screen.description = description;
     return screen;
   });
 module.exports = index;
