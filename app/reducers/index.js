@@ -1,13 +1,10 @@
 const { combineReducers } = require('redux');
+const formReducer = require('redux-form').reducer;
 const {
   screens,
   getAllScreens,
   getIsFetchingScreens,
   getIsErrorFetchingScreens,
-  getIsAddingScreen,
-  getIsErrorAddingScreen,
-  getIsSuccessAddingScreen,
-  getErrorAddingMessageScreen,
   getSelectedScreen,
   getIsUpdatingScreen,
   getIsErrorUpdatingScreen
@@ -15,6 +12,7 @@ const {
 const index = {};
 // REDUCERS
 index.app = combineReducers({
+  form: formReducer,
   screens
 });
 // END
@@ -27,18 +25,6 @@ index.getIsFetchingScreens = (state) => {
 }
 index.getIsErrorFetchingScreens = (state) => {
   return getIsErrorFetchingScreens(state.screens);
-}
-index.getIsAddingScreen = (state) => {
-  return getIsAddingScreen(state.screens);
-}
-index.getIsErrorAddingScreen = (state) => {
-  return getIsErrorAddingScreen(state.screens);
-}
-index.getIsSuccessAddingScreen = (state) => {
-  return getIsSuccessAddingScreen(state.screens);
-}
-index.getErrorAddingMessageScreen = (state) => {
-  return getErrorAddingMessageScreen(state.screens);
 }
 index.getSelectedScreen = (state) => {
   return getSelectedScreen(state.screens);

@@ -5,12 +5,7 @@ const Screens = ({
   isFetching,
   isErrorFetching,
   selectScreen,
-  selectedScreen,
-  description,
-  handleChangeDescription,
-  handleUpdateScreen,
-  isUpdating,
-  isErrorUpdating
+  selectedScreen
 }) => {
   if (isFetching && screens.length === 0) {
     return (
@@ -22,6 +17,7 @@ const Screens = ({
       <div className="alert alert-danger" role="alert"><strong>Failed to load screens...</strong></div>
     );
   }
+  // TODO: NEED TO INCORPORATE REAL UPDATE FORM
   return (
   <div className="panel panel-default">
     <div className="panel-heading">
@@ -29,27 +25,17 @@ const Screens = ({
     </div>
     <ul className="list-group">
       {screens.map(screen =>
-        <li onClick={
-            (selectedScreen !== screen.id && !isUpdating) ?
+        <li
+          onClick={
+            (selectedScreen !== screen.id) ?
               selectScreen.bind(null, screen.id) :
               null
-          } key={screen.id} className="list-group-item">
+          }
+          key={screen.id} className="list-group-item">
           <h4 className="list-group-item-heading">{screen.id}</h4>
           {
             (selectedScreen === screen.id) ?
-              <form onSubmit={handleUpdateScreen}>
-                <div className="form-group">
-                  <input disabled={isUpdating} id="description" className="form-control" type="text" placeholder="description" value={description} onChange={handleChangeDescription}/>
-                </div>
-                {
-                  isErrorUpdating ?
-                    <div className="alert alert-danger" role="alert"><strong>Failed to update.</strong></div> :
-                    null
-                }
-                <div className="form-group">
-                  <button disabled={isUpdating} type="submit" className="btn btn-default">Update</button>
-                </div>
-              </form> :
+              <div>TODO: FORM</div> :
               <p className="list-group-item-text">{screen.description}</p>
           }
         </li>
@@ -63,11 +49,6 @@ Screens.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   isErrorFetching: PropTypes.bool.isRequired,
   selectScreen: PropTypes.func.isRequired,
-  selectedScreen: PropTypes.string,
-  description: PropTypes.string.isRequired,
-  handleChangeDescription: PropTypes.func.isRequired,
-  handleUpdateScreen: PropTypes.func.isRequired,
-  isUpdating: PropTypes.bool.isRequired,
-  isErrorUpdating: PropTypes.bool.isRequired
+  selectedScreen: PropTypes.string
 };
 module.exports = Screens;
