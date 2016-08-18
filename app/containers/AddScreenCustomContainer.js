@@ -3,8 +3,7 @@ const { PropTypes } = React;
 const AddScreenFormContainer = require('./AddScreenFormContainer');
 const AddScreenCustomContainer = React.createClass({
   onSubmit: function({id, description}) {
-    const self = this;
-    const { addScreen } = self.props;
+    const { addScreen } = this.props;
     return addScreen(id, description);
   },
   render: function() {
@@ -14,7 +13,7 @@ const AddScreenCustomContainer = React.createClass({
         onSubmit={self.onSubmit} />
     );
   },
-  PropTypes: {
+  propTypes: {
     addScreen: PropTypes.func.isRequired
   }
 });

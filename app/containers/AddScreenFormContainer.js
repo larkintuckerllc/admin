@@ -8,8 +8,8 @@ const validate = values => {
   }
   return errors;
 };
-const AddScreenContainer = reduxForm({
+const AddScreenFormContainer = reduxForm({
   form: ADD_SCREEN_FORM,
   validate
 })(AddScreen);
-module.exports = AddScreenContainer;
+module.exports = AddScreenFormContainer;

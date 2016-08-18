@@ -39,4 +39,35 @@ index.updateScreen = (id, description) =>
     screen.description = description;
     return screen;
   });
+index.fetchPdfs = () => new Promise((resolve, reject) => {
+  const xmlhttp = new window.XMLHttpRequest();
+  xmlhttp.open('GET', 'http://localhost:3000/api/pdfs', true);
+  xmlhttp.setRequestHeader('Content-type', 'application/json');
+  xmlhttp.onreadystatechange = () => {
+    if (xmlhttp.readyState !== 4) return;
+    if (xmlhttp.status !== 200) reject('500');
+    try {
+      resolve(JSON.parse(xmlhttp.responseText));
+    } catch (err) {
+      reject('500');
+    }
+  }
+  xmlhttp.send(JSON.stringify({}));
+});
+index.addPdf = (file) => new Promise((resolve, reject) => {
+  const formData = new window.FormData();
+  const xmlhttp = new window.XMLHttpRequest();
+  formData.append('file', file);
+  xmlhttp.open('POST', 'http://localhost:3000/api/pdfs', true);
+  xmlhttp.onreadystatechange = () => {
+    if (xmlhttp.readyState !== 4) return;
+    if (xmlhttp.status !== 200) reject('500');
+    try {
+      resolve(JSON.parse(xmlhttp.responseText));
+    } catch (err) {
+      reject('500');
+    }
+  };
+  xmlhttp.send(formData);
+});
 module.exports = index;

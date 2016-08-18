@@ -9,11 +9,19 @@ const {
   getIsUpdatingScreen,
   getIsErrorUpdatingScreen
 } = require('./screensReducer');
+const {
+  pdfs,
+  getAllPdfs,
+  getIsFetchingPdfs,
+  getIsErrorFetchingPdfs,
+  getLastPdfAddTime
+} = require('./pdfsReducer');
 const index = {};
 // REDUCERS
 index.app = combineReducers({
   form: formReducer,
-  screens
+  screens,
+  pdfs
 });
 // END
 // ACCESSSORS
@@ -35,5 +43,17 @@ index.getIsUpdatingScreen = (state) => {
 index.getIsErrorUpdatingScreen = (state) => {
   return getIsErrorUpdatingScreen(state.screens);
 }
+index.getAllPdfs = (state) => {
+  return getAllPdfs(state.pdfs);
+}
+index.getIsFetchingPdfs = (state) => {
+  return getIsFetchingPdfs(state.pdfs);
+}
+index.getIsErrorFetchingPdfs = (state) => {
+  return getIsErrorFetchingPdfs(state.pdfs);
+};
+index.getLastPdfAddTime = (state) => {
+  return getLastPdfAddTime(state.pdfs);
+};
 // END
 module.exports = index;

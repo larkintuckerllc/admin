@@ -16,8 +16,7 @@ const AddScreen = ({ handleSubmit, submitting, valid, error }) => (
           error === '409' ?
             <div className="alert alert-danger" role="alert"><strong>Duplicate Id.</strong></div> :
             <div className="alert alert-danger" role="alert"><strong>Failed to add screen.</strong></div> :
-          null
-        }
+          null}
         <div className="form-group">
           <button disabled={!valid || submitting} type="submit"
             className="btn btn-default">Add Screen</button>

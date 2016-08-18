@@ -1,0 +1,22 @@
+.pdfs__pdf__thumbnail {
+  position: relative;
+  float: left;
+  display: inline-block;
+  margin-right: 15px;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.pdfs__pdf__thumbnail__zoom {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 25px;
+  height: 25px;
+  background-image: url('img/zoom.png');
+}
+.pdfs__pdf__text {
+  font-size: 18px;
+  color: #333;
+}
